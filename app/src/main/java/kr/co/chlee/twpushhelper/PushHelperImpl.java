@@ -34,20 +34,20 @@ public abstract class PushHelperImpl implements PushHelper {
      * API 응답 성공시에만 마지막으로 성공한 타임스템프를 변경
      * @param timestamp 호출할 푸시 메시지의 시간
      */
-    abstract void apiCall(Long timestamp);
+    public abstract void apiCall(Long timestamp);
 
 
     /**
      * SharedPreferences에 MQTT 타임스템프를 저장하도록 구현해야함
      * @param timestamp 새로운 MQTT의 시간
      */
-    abstract void setTimestamp(Long timestamp);
+    public abstract void setTimestamp(Long timestamp);
 
 
     /**
      * SharedPreferences에 저장된 MQTT 타임스템프를 반환하도록 구현해야함
      */
-    abstract Long getTimestamp();
+    public abstract Long getTimestamp();
 
     public abstract void handlePushMessage(JSONObject message) throws JSONException;
 
