@@ -6,18 +6,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * @brief 푸시 메시지 처리를 위한 PushHelper 구현 클래스
+ * @brief 푸시 메시지 처리를 위한 TWPushHelper 구현 클래스
  * API 호출 시 필요한 파라미터 값인 start_timestamp을 저장하기 위해서 SharedPreferences를 활용.
  * 해당 값의 초기화는 로그인 성공 후 동기화된 서버시간을 기준으로 설정함.
  * @author chlee
  * @date 2018-02-23
  */
 
-public abstract class PushHelperImpl implements PushHelper {
+public abstract class TWPushHelperImpl implements TWPushHelper {
 
     private Context mContext;
 
-    public PushHelperImpl(Context context) {
+    public TWPushHelperImpl(Context context) {
         this.mContext = context;
     }
 

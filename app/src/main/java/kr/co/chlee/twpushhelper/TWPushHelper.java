@@ -7,7 +7,7 @@ import org.json.JSONObject;
  * @author chlee
  * @date 2018-02-23
  */
-interface PushHelper {
+interface TWPushHelper {
 
     /**
      * 푸시 메시지 수신시 처리
