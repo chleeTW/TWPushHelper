@@ -11,7 +11,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.chleeTW:TWPushHelper:1.0.5'
+    compile 'com.github.chleeTW:TWPushHelper:1.0.6'
 }
 ```
 <br/>
@@ -19,14 +19,14 @@ dependencies {
 
 
 ## How to use
-#### 1. PushHelperImpl를 상속받은 PushHelper 클래스 생성
+#### 1. TWPushHelperImpl를 상속받은 PushHelper 클래스 생성
 ```javascript
-public class PushHelper extends PushHelperImpl {
+public class PushHelper extends TWPushHelperImpl {
     private static PushHelper instance = new PushHelper(/** Add user Application context **/); 
     public static PushHelper getInstance(){
         return instance;
     }
-    public PushHelper(Context context) {
+    public TWPushHelper(Context context) {
         super(context);
     }
     @Override
