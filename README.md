@@ -1,5 +1,7 @@
 TWPushHelper
 =====
+##### - FCM, MQTT 등 서버로부터 푸시받은 시간과 이전 성공시간 사이에 stored_message를 가져오도록 도와주는 라이브러리.
+-----
 <br/>
 
 ## Installation
