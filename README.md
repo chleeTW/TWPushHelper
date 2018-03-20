@@ -3,7 +3,6 @@ TWPushHelper
 <br/>
 
 ## Installation
------
 Edit Gradle file :
 ```gradle
 repositories {
@@ -19,13 +18,7 @@ dependencies {
 
 
 
-
-
 ## How to use
-<br/>
-
-
-
 ##### 1. PushHelperImpl를 상속받은 PushHelper 클래스 생성
 ```javascript
 public class PushHelper extends PushHelperImpl {
