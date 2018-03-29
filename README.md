@@ -6,12 +6,18 @@ TWPushHelper
 
 ## Installation
 Edit Gradle file :
+
+Add it in your root build.gradle at the end of repositories
 ```gradle
-repositories {
-    maven { url "https://jitpack.io" }
-
+allprojects {
+    repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
 }
-
+```
+Add the dependency
+```gradle
 dependencies {
     compile 'com.github.chleeTW:TWPushHelper:1.0.6'
 }
