@@ -1,4 +1,4 @@
-TWPushHelper
+TWPushHelper [![](https://jitpack.io/v/chleeTW/TWPushHelper.svg)](https://jitpack.io/#chleeTW/TWPushHelper)
 =====
 ##### - FCM, MQTT 등 서버로부터 푸시받은 시간과 이전 성공시간 사이에 stored_message를 가져오도록 도와주는 라이브러리.
 -----
@@ -19,7 +19,7 @@ allprojects {
 Add the dependency
 ```gradle
 dependencies {
-    compile 'com.github.chleeTW:TWPushHelper:1.0.6'
+    implementation 'com.github.chleeTW:TWPushHelper:2.0.4'
 }
 ```
 <br/>
@@ -29,7 +29,7 @@ dependencies {
 ## How to use
 #### 1. TWPushHelperImpl를 상속받은 PushHelper 클래스 생성
 ```javascript
-public class PushHelper extends TWPushHelperImpl {
+public class PushHelper extends TWPushHelper {
     private static PushHelper instance = new PushHelper(/** Add user Application context **/); 
     public static PushHelper getInstance(){
         return instance;
@@ -41,13 +41,7 @@ public class PushHelper extends TWPushHelperImpl {
     public void apiCall(Long timestamp) {
         // Add user api call code
         // Add following code in onSucess callback
-        //  try {
-        //      handlePushMessage(response);
-        //      callBackProcess(timestamp, true);
-        //  } catch (JSONException e) {
-        //      e.printStackTrace();
-        //      callBackProcess(timestamp, false);
-        //  }
+        //  callBackProcess(timestamp, handlePushMessage(response));
         // Add following code in onFailure callback
         //  callBackProcess(timestamp, false);
     }
@@ -63,7 +57,7 @@ public class PushHelper extends TWPushHelperImpl {
     }
 
     @Override
-    public void handlePushMessage(JSONObject jsonObject) throws JSONException {
+    public boolean handlePushMessage(JSONObject jsonObject) {
         // Add code to handle the JSONObject received as a result of the API request
     }
 }
