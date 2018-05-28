@@ -34,7 +34,7 @@ public class PushHelper extends TWPushHelper {
     public static PushHelper getInstance(){
         return instance;
     }
-    private TWPushHelper() {}
+    private PushHelper() {}
     @Override
     public void apiCall(Long timestamp) {
         // Add user api call code
