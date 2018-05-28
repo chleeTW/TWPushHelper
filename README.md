@@ -19,7 +19,7 @@ allprojects {
 Add the dependency
 ```gradle
 dependencies {
-    implementation 'com.github.chleeTW:TWPushHelper:2.0.4'
+    implementation 'com.github.chleeTW:TWPushHelper:2.0.5'
 }
 ```
 <br/>
@@ -30,13 +30,11 @@ dependencies {
 #### 1. TWPushHelper를 상속받은 PushHelper 클래스 생성
 ```javascript
 public class PushHelper extends TWPushHelper {
-    private static PushHelper instance = new PushHelper(/** Add user Application context **/); 
+    private static PushHelper instance = new PushHelper(); 
     public static PushHelper getInstance(){
         return instance;
     }
-    public TWPushHelper(Context context) {
-        super(context);
-    }
+    private TWPushHelper() {}
     @Override
     public void apiCall(Long timestamp) {
         // Add user api call code
@@ -66,7 +64,6 @@ public class PushHelper extends TWPushHelper {
 
 
 #### >>> Todo List
-+ `Line2` : Applicaton Context 추가
 + `apiCall()` :  getStroedMessage API 요청하기 위한 코드를 추가 (성공 및 실패 콜백에 주석으로 작성된 코드 추가)
 + `setTimestamp()` : 성공한 타임스템프를 저장하기위한 코드 추가 (예를들어 SharedPreference 활용)
 + `getTimestamp()` : 마지막으로 성공한 타임스템프를 가져오기 위한 코드 추가 (예를들어 SharedPreference 활용)
