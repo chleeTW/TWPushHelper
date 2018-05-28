@@ -28,6 +28,29 @@ dependencies {
 
 ## How to use
 #### 1. TWPushHelper를 상속받은 PushHelper 클래스 생성
+
+Kotlin Code :
+```javascript
+object PushHelper: TWPushHelper() {
+    override fun apiCall(timestamp: Long) {
+        // Add user api call code
+        // Add following code in onSucess callback
+        //  callBackProcess(timestamp, handlePushMessage(response))
+        // Add following code in onFailure callback
+        //  callBackProcess(timestamp, false)
+    }
+    override fun setTimestamp(timestamp: Long) {
+        // Add code to store successed timestamp on the device (like SharedPreference)
+    }
+    override fun getTimestamp(): Long {
+        retuen /** Add code to get A from device (like SharedPreference) **/
+    }
+    override fun handlePushMessage(message: JSONObject): Boolean {
+        // Add code to handle the JSONObject received as a result of the API request
+    }
+```
+
+JavaCode :
 ```javascript
 public class PushHelper extends TWPushHelper {
     private static PushHelper instance = new PushHelper(); 
@@ -73,6 +96,15 @@ public class PushHelper extends TWPushHelper {
 
 
 #### 2. FCM의 onMessageReceived(), MQTT의 messageArrived()등 Push 받은 메시지의 JSONObject를 PushHelper.putPush()로 전달
+TWPushHelper(Kotlin or Java) Using Kotlin Code :
+```javascript
+PushHelper.putPush(jsonObjectMessage)
+```
+TWPushHelper(Kotlin) Using Java Code :
+```javascript
+PushHelper.INSTANCE.putPush(jsonObjectMessage);
+```
+TWPushHelper(Java) Using Java Code :
 ```javascript
 PushHelper.getInstance().putPush(jsonObjectMessage);
 ```
@@ -81,11 +113,26 @@ PushHelper.getInstance().putPush(jsonObjectMessage);
 
 
 #### 3. 유저 로그인 성공 및 동기화 완료시 타임스템프 값을 확인. 해당 값이 없을 경우 로그인 및 동기화 완료 당시 서버 시간으로 초기화
+
+TWPushHelper(Kotlin or Java) Using Kotlin Code :
+```javascript
+if(PushHelper.getTimestamp() <= 0) {
+    PushHelper.setTimestamp(/** 동기화된 서버 시간 **/);
+}
+```
+TWPushHelper(Kotlin) Using Java Code :
+```javascript
+if(PushHelper.INSTANCE.getTimestamp() <= 0) {
+    PushHelper.INSTANCE.setTimestamp(/** 동기화된 서버 시간 **/);
+}
+```
+TWPushHelper(Java) Using Java Code :
 ```javascript
 if(PushHelper.getInstance().getTimestamp() <= 0) {
     PushHelper.getInstance().setTimestamp(/** 동기화된 서버 시간 **/);
 }
 ```
+
 - - -
 ###### cf. 모이고에서는 (동기화된서버시간-1초)로 초기화하고 있음
 ###### 1초 전으로 설정한 이유는 SharedPreferences 초기화 사이의 시간 동안 MQTT가 도착할 가능성이 있으며, 혹여 '(연결성공시간-1초) ~ (연결성공시간)' 사이에 있는 데이터가 클라에서 이미 처리한 MQTT라 하더라도, 현재 아래의 경우를 제외하면 MQTT를 중복 처리 한다 하더다도 문제가 없음. (향후 MQTT 추가시 중복처리 이슈에 대한 고려가 필요) 
