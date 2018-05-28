@@ -27,7 +27,7 @@ dependencies {
 
 
 ## How to use
-#### 1. TWPushHelperImpl를 상속받은 PushHelper 클래스 생성
+#### 1. TWPushHelper를 상속받은 PushHelper 클래스 생성
 ```javascript
 public class PushHelper extends TWPushHelper {
     private static PushHelper instance = new PushHelper(/** Add user Application context **/); 
