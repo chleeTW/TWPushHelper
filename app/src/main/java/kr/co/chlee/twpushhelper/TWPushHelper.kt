@@ -1,6 +1,5 @@
 package kr.co.chlee.twpushhelper
 
-import android.content.Context
 import org.json.JSONObject
 
 
@@ -11,19 +10,11 @@ import org.json.JSONObject
  * 해당 값의 초기화는 로그인 성공 후 동기화된 서버시간을 기준으로 설정함.
  * 2018-04-16 convert code java to kotlin by chlee
  */
-open class TWPushHelper constructor(private val mContext: Context): ITWPushHelper{
+open class TWPushHelper: ITWPushHelper{
 
     private val MQTT_TIME_KEY = "registered_timestamp_in_mill"
     private var receivedMqttTime: Long = -1L
     private var lock = false
-
-    /**
-     * getContext
-     * @return context
-     */
-    fun getContext(): Context {
-        return mContext
-    }
 
 
     override fun apiCall(timestamp: Long) {
