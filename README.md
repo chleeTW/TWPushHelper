@@ -50,7 +50,7 @@ object PushHelper: TWPushHelper() {
     }
 ```
 
-JavaCode :
+Java Code :
 ```javascript
 public class PushHelper extends TWPushHelper {
     private static PushHelper instance = new PushHelper(); 
