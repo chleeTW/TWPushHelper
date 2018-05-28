@@ -11,7 +11,7 @@ import org.json.JSONObject
  * 해당 값의 초기화는 로그인 성공 후 동기화된 서버시간을 기준으로 설정함.
  * 2018-04-16 convert code java to kotlin by chlee
  */
-open class TWPushHelper constructor(private val mContext: Context){
+open class TWPushHelper constructor(private val mContext: Context): ITWPushHelper{
 
     private val MQTT_TIME_KEY = "registered_timestamp_in_mill"
     private var receivedMqttTime: Long = -1L
@@ -26,33 +26,19 @@ open class TWPushHelper constructor(private val mContext: Context){
     }
 
 
+    override fun apiCall(timestamp: Long) {
+    }
 
+    override fun setTimestamp(timestamp: Long) {
+    }
 
+    override fun getTimestamp(): Long {
+        return -1
+    }
 
-    /**
-     * Server 에서 마지막으로 성공한(푸시 메시지 처리) 시간부터 새로운 푸시 메시지의 시간까지 해당하는 메시지들을 받아와서 처리하도록 구현해야함
-     * API 응답 성공시에만 마지막으로 성공한 타임스템프를 변경
-     * @param timestamp 호출할 푸시 메시지의 시간
-     */
-    abstract fun apiCall(timestamp: Long)
-    /**
-     * SharedPreferences에 MQTT 타임스템프를 저장하도록 구현해야함
-     * @param timestamp 새로운 MQTT의 시간
-     */
-    abstract fun setTimestamp(timestamp: Long)
-    /**
-     * SharedPreferences에 저장된 MQTT 타임스템프를 반환하도록 구현해야함
-     */
-    abstract fun getTimestamp(): Long
-    /**
-     * API 요청 결과로 받은 메시지의 JSONObect를 처리하도록 구현해야함
-     * @return 처리 성공여부
-     */
-    abstract fun handlePushMessage(message: JSONObject): Boolean
-
-
-
-
+    override fun handlePushMessage(message: JSONObject): Boolean {
+        return false
+    }
 
     /**
      * 푸시 메시지 수신시 처리
